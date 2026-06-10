@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Future Me App - Signup</title>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 50px; background: #f4f4f4; }
+    input, button { padding: 12px; margin: 10px; font-size: 16px; }
+    #otpSection { display: none; }
+  </style>
+</head>
+<body>
+
+<h1>Future Me App - Create Account</h1>
+
+<form id="signupForm">
+  <input type="text" placeholder="Full Name" id="fullName" required><br>
+  <input type="tel" placeholder="Phone Number (+countrycode)" id="phoneNumber" required><br>
+  <button type="button" id="sendOTP">Send OTP</button>
+</form>
+
+<div id="otpSection">
+  <input type="number" id="otpInput" placeholder="Enter OTP"><br>
+  <button id="verifyOTP">Verify OTP</button>
+  <p id="timer"></p>
+  <button id="resendBtn" disabled>Resend OTP</button>
+</div>
+
+<script>
+  // 1️⃣ Firebase config
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+  firebase.initializeApp(firebaseConfig);
+
+  const auth = firebase.auth();
+
+  let confirmationResult;
+  let timeLeft = 60;
+  let countdown;
+
+  function startTimer() {
+    const timerDisplay = document.getElementById("timer");
+    const resendBtn = document.getElementById("resendBtn");
+    resendBtn.disabled = true;
+    timerDisplay.innerText = `Resend OTP in ${timeLeft}s`;
+    countdown = setInterval(() => {
+      timeLeft--;
+      timerDisplay.innerText = `Resend OTP in ${timeLeft}s`;
+      if(timeLeft <= 0) {
+        clearInterval(countdown);
+        resendBtn.disabled = false;
+        timerDisplay.innerText = "";
+        timeLeft = 60;
+      }
+    }, 1000);
+  }
+
+  document.getElementById("sendOTP").onclick = () => {
+    const phoneNumber = document.getElementById("phoneNumber").value;
+    const appVerifier = new firebase.auth.RecaptchaVerifier(document.getElementById("sendOTP"), {
+      size: 'invisible'
+    });
+
+    auth.signInWithPhoneNumber(phoneNumber, appVerifier)
+      .then((result) => {
+        confirmationResult = result;
+        document.getElementById("otpSection").style.display = "block";
+        startTimer();
+        alert("OTP sent!");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
+  document.getElementById("verifyOTP").onclick = () => {
+    const code = document.getElementById("otpInput").value;
+    confirmationResult.confirm(code)
+      .then((result) => {
+        const user = result.user;
+        alert("OTP Verified! Account created for " + user.phoneNumber);
+      })
+      .catch((error) => {
+        alert("Incorrect OTP: " + error.message);
+      });
+  };
+
+  document.getElementById("resendBtn").onclick = () => {
+    document.getElementById("sendOTP").click();
+    startTimer();
+  };
+</script>
+
+</body>
+</html>

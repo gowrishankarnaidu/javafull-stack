@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Future Me App - Signup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2563eb;
+      color: white;
+      padding: 20px 0;
+    }
+
+    header h1 {
+      font-size: 28px;
+      margin: 0;
+    }
+
+    main {
+      padding: 50px 20px;
+    }
+
+    input {
+      display: block;
+      margin: 15px auto;
+      padding: 12px;
+      font-size: 16px;
+      width: 250px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      margin: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #timer {
+      font-size: 14px;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      padding: 20px 0;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Future Me App - Create Account</h1>
+  </header>
+
+  <main>
+    <form id="signupForm">
+      <input type="text" placeholder="Full Name" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <input type="password" placeholder="Password" required>
+      <button type="button" id="sendOTP">Send OTP</button>
+    </form>
+
+    <div id="otpSection" style="display:none;">
+      <input type="number" placeholder="Enter OTP" id="otpInput" maxlength="6">
+      <button id="verifyOTP">Verify OTP</button>
+      <p id="timer">Resend OTP in 60s</p>
+      <button id="resendBtn" disabled>Resend OTP</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Future Me App</p>
+  </footer>
+
+  <script>
+    let timeLeft = 60;
+    let timerDisplay = document.getElementById("timer");
+    let resendBtn = document.getElementById("resendBtn");
+    let otpSection = document.getElementById("otpSection");
+    let sendOTP = document.getElementById("sendOTP");
+
+    function startTimer() {
+      resendBtn.disabled = true;
+      timerDisplay.innerText = `Resend OTP in ${timeLeft}s`;
+      let countdown = setInterval(() => {
+        timeLeft--;
+        timerDisplay.innerText = `Resend OTP in ${timeLeft}s`;
+        if(timeLeft <= 0) {
+          clearInterval(countdown);
+          timerDisplay.innerText = "";
+          resendBtn.disabled = false;
+          timeLeft = 60;
+        }
+      }, 1000);
+    }
+
+    sendOTP.onclick = () => {
+      alert("OTP sent!"); // Replace with real OTP logic later
+      otpSection.style.display = "block";
+      startTimer();
+    }
+
+    resendBtn.onclick = () => {
+      alert("OTP resent!"); // Replace with real OTP logic later
+      startTimer();
+    }
+
+    document.getElementById("verifyOTP").onclick = () => {
+      let otp = document.getElementById("otpInput").value;
+      if(otp === "123456") { // Replace with backend verification
+        alert("OTP verified! Account created.");
+      } else {
+        alert("Incorrect OTP.");
+      }
+    }
+  </script>
+
+</body>
+</html>
