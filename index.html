@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangani Gowri Shankar Naidu - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            background: white;
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            animation: slideInLeft 0.6s ease-out;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 100%;
+            animation: growWidth 0.8s ease-out;
+        }
+
+        @keyframes growWidth {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        .about-content {
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            animation: rotateIn 0.6s ease-out;
+            position: relative;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        .skill-card:nth-child(1) { animation-delay: 0.1s; }
+        .skill-card:nth-child(2) { animation-delay: 0.2s; }
+        .skill-card:nth-child(3) { animation-delay: 0.3s; }
+        .skill-card:nth-child(4) { animation-delay: 0.4s; }
+        .skill-card:nth-child(5) { animation-delay: 0.5s; }
+        .skill-card:nth-child(6) { animation-delay: 0.6s; }
+        .skill-card:nth-child(7) { animation-delay: 0.7s; }
+        .skill-card:nth-child(8) { animation-delay: 0.8s; }
+
+        .education-item {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #667eea;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideInRight 0.6s ease-out;
+        }
+
+        .education-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .education-item h3 {
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .education-item p {
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-info {
+            font-size: 1.1em;
+            margin: 15px 0;
+        }
+
+        .contact-info strong {
+            color: #667eea;
+        }
+
+        .contact-links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-weight: bold;
+            animation: slideInUp 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-links a:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .contact-links a:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .contact-links a:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+            animation: glow 1s ease-in-out;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes typeWriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            0%, 49% {
+                border-right: 3px solid white;
+            }
+            50%, 100% {
+                border-right: 3px transparent;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                opacity: 0;
+                transform: rotate(-10deg);
+            }
+            to {
+                opacity: 1;
+                transform: rotate(0);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px);
+            }
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+            }
+        }
+
+        @keyframes flip {
+            0% {
+                transform: perspective(400px) rotateY(0);
+            }
+            100% {
+                transform: perspective(400px) rotateY(360deg);
+            }
+        }
+
+        @keyframes wobble {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            15% {
+                transform: translateX(-5px) rotate(-3deg);
+            }
+            30% {
+                transform: translateX(5px) rotate(3deg);
+            }
+            45% {
+                transform: translateX(-5px) rotate(-3deg);
+            }
+            60% {
+                transform: translateX(3px) rotate(2deg);
+            }
+            75% {
+                transform: translateX(-2px) rotate(-1deg);
+            }
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            animation: slideInDown 0.8s ease-out, glow 3s ease-in-out infinite;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            animation: slideInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .experience-item {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #764ba2;
+            border-radius: 5px;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .experience-item h3 {
+            color: #764ba2;
+            margin-bottom: 5px;
+        }
+
+        .toggle-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 15px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .toggle-btn:hover {
+            background: #764ba2;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .toggle-btn:active {
+            animation: bounce 0.6s ease-out;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Rangani Gowri Shankar Naidu</h1>
+        <p>B.Tech CSE | Full Stack Developer | Tech Enthusiast</p>
+    </header>
+
+    <div class="container">
+        <!-- About Section -->
+        <section>
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>
+                    Hello! I'm Rangani Gowri Shankar Naidu, a passionate B.Tech Computer Science and Engineering graduate 
+                    from Mother Theresa Institution. With a strong foundation in web development and software engineering, 
+                    I am dedicated to creating innovative and user-friendly digital solutions. I combine technical expertise 
+                    with creative thinking to solve complex problems and deliver high-quality projects.
+                </p>
+                <p style="margin-top: 15px;">
+                    I'm enthusiastic about learning new technologies and staying updated with industry trends. 
+                    My goal is to contribute meaningfully to projects while continuously improving my skills in full-stack development.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section>
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">HTML5</div>
+                <div class="skill-card">CSS3</div>
+                <div class="skill-card">JavaScript</div>
+                <div class="skill-card">Java</div>
+                <div class="skill-card">SQL</div>
+                <div class="skill-card">Responsive Design</div>
+                <div class="skill-card">Git & GitHub</div>
+                <div class="skill-card">Web Development</div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section>
+            <h2>Education</h2>
+            <div class="education-item">
+                <h3>B.Tech in Computer Science and Engineering</h3>
+                <p><strong>Institution:</strong> Mother Theresa Institution</p>
+                <p><strong>Status:</strong> Graduate</p>
+                <p><strong>Focus:</strong> Software Development, Web Technologies, Database Management</p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section>
+            <h2>Experience</h2>
+            <div class="experience-item">
+                <h3>Full Stack Development</h3>
+                <p><strong>Focus Areas:</strong></p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Frontend Development with HTML, CSS, and JavaScript</li>
+                    <li>Backend Development and Database Design</li>
+                    <li>Responsive Web Design and UI/UX Implementation</li>
+                    <li>Project Management and Collaboration</li>
+                </ul>
+            </div>
+            <button class="toggle-btn" onclick="toggleExperience()">Show More</button>
+            <div id="moreExperience" class="hidden">
+                <div class="experience-item">
+                    <h3>Projects Completed</h3>
+                    <p>Developed multiple projects including portfolio websites, resume builders, and interactive web applications using modern web technologies.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <p><strong>Email:</strong> gowrishankarnaidur@gmail.com</p>
+                <p><strong>Location:</strong> India</p>
+                <p><strong>Available for:</strong> Freelance Projects, Full-time Opportunities, Collaborations</p>
+            </div>
+            <div class="contact-links">
+                <a href="mailto:gowrishankarnaidur@gmail.com">Send Email</a>
+                <a href="#" onclick="copyEmail()">Copy Email</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Rangani Gowri Shankar Naidu. All rights reserved.</p>
+        <p>Built with ❤️ using HTML, CSS, and JavaScript</p>
+    </footer>
+
+    <script>
+        // Animate on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('section');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.style.opacity = '1';
+                    el.style.animation = 'fadeIn 0.8s ease-out forwards';
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+
+        // Toggle Experience Section
+        function toggleExperience() {
+            const moreExp = document.getElementById('moreExperience');
+            const btn = event.target;
+            
+            if (moreExp.classList.contains('hidden')) {
+                moreExp.classList.remove('hidden');
+                moreExp.style.animation = 'slideInLeft 0.5s ease-out';
+                btn.textContent = 'Show Less';
+                btn.style.animation = 'wobble 0.5s ease-out';
+            } else {
+                moreExp.classList.add('hidden');
+                btn.textContent = 'Show More';
+            }
+        }
+
+        // Copy Email Function with animation
+        function copyEmail() {
+            const email = 'gowrishankarnaidur@gmail.com';
+            navigator.clipboard.writeText(email).then(() => {
+                const btn = event.target;
+                btn.style.animation = 'pulse 0.5s ease-out';
+                btn.textContent = '✓ Copied!';
+                setTimeout(() => {
+                    btn.textContent = 'Copy Email';
+                    btn.style.animation = 'none';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('header');
+            header.style.backgroundPosition = `0 ${scrolled * 0.5}px`;
+        });
+
+        // Add scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach((section, index) => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(section);
+        });
+
+        // Skill card click animation
+        document.querySelectorAll('.skill-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'flip 0.6s ease-out';
+                }, 10);
+            });
+        });
+
+        // Add hover sound effect (optional - you can uncomment if needed)
+        document.querySelectorAll('.skill-card, .contact-links a').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.animation = 'wobble 0.4s ease-out';
+            });
+        });
+
+        // Initialize animations on page load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('section').forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

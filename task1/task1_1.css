@@ -1,0 +1,13 @@
+let amount = 1400;
+if (amount >= 100) {
+    let fivehundred = Math.floor(amount / 500);
+    console.log("You have a lot of money. You can buy " + fivehundred + " items.");
+    let amount1 = amount - fivehundred * 500;
+    let twohundred = Math.floor(amount1 / 200);
+    console.log("You can also buy " + twohundred + " items with the remaining money.");
+    let amount2 = amount1 - twohundred * 200;
+    let onehundred = Math.floor(amount2 / 100);     
+    console.log("You can also buy " + onehundred + " items with the remaining money.");
+} else if (amount <= 100) {
+    console.log("You have a moderate amount of money.");
+}   

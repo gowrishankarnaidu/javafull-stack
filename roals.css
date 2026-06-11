@@ -1,0 +1,20 @@
+img{
+    width:100px;
+    height:100px;
+    margin:30px 40px 30px 40px;
+    border-style: solid;
+    border-color: blue yellow brown green;
+    border-width:0.8cm;
+    padding:0.1cm;
+    border-radius: 2cm;
+}
+h1{
+    width:100px;
+    height:100px;
+    margin:30px 40px 30px 40px;
+    border-style: solid;
+    border-color: blue yellow brown green;
+    border-width:0.8cm;
+    padding:0.1cm;
+    border-radius: 2cm;
+}
