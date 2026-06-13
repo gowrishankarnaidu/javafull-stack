@@ -1,0 +1,10 @@
+let value=document.getElementById("wish");
+console.log(pen);
+let  mouse=document.getElementById("wishes");
+console.log(mouse);
+let cable=document.getElementById("div");
+console.log(cable);
+let water=document.getElementById("#content");
+console.log(water);
+let queries=document.getElementById("p");
+console.log(queries);

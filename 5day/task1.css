@@ -1,0 +1,18 @@
+img {
+    background-color:beige;
+    flex: 1;
+    padding: 10px;
+}
+h1 {
+    COLOR:blue;
+}
+body{
+    background-color:pink;
+}
+p {
+    font-size: 18px;
+    color: purple;
+}
+button{
+    background-color:brown
+}

@@ -50,10 +50,40 @@ for(let i=1;i<=10;i++)
 {
     cook();
 }
-*/
+*
 function add(a,b)
 {
     return a+b;
 }let sum=add(10,20);
 console.log(sum);
+*
+function guessnumber(n)
 
+{
+    if(n>7){
+        return;
+
+    }
+    console.log(n);
+    n+=1;
+    guessnumber(n);
+
+}
+num+1;
+*/
+function guess(n) {
+    let userGuess = Number(prompt("Enter a number:"));
+
+    if (userGuess == n) {
+        console.log("Congratulations! You guessed the number.");
+    } else if (userGuess < n) {
+        console.log("Too low! Try again.");
+        guess(n);
+    } else {
+        console.log("Too high! Try again.");
+        guess(n);
+    }
+}
+
+let number = Math.floor(Math.random() * 100) + 1;
+guess(number);
